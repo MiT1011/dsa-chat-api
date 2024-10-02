@@ -18,7 +18,7 @@ router.get('/google', passport.authenticate('google', { scope: ['profile', 'emai
 
 router.get('/google/redirect', passport.authenticate('google', { failureRedirect: '/' }), (req, res) => {
     try {
-        const token = jwt.sign({ id: req.user.id }, jwtSecret, { expiresIn: '1h' });
+        const token = jwt.sign({ id: req.user.id }, jwtSecret, { expiresIn: '24h' });
         console.log('SUCCESS');
         res.json({ token });
     } catch (error) {
