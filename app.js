@@ -9,6 +9,7 @@ import { chatRoutes } from './routes/chats.js';
 
 import './config/passport.js';
 import dotenv from 'dotenv';
+import cors from 'cors';
 dotenv.config();
 
 const app = express();
