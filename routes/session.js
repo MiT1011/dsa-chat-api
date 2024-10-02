@@ -8,7 +8,7 @@ const router = express.Router();
 /* 
 Add new session
 Requires userId in req.body
-POST Endpoint: http://localhost:3000/sessions/
+POST Endpoint: https://dsa-chat-api.onrender.com/sessions/
 */
 router.post('/', async (req, res) => {
     console.log(req.body);

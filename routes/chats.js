@@ -8,7 +8,7 @@ const router = express.Router();
 /* 
 Adds a chat to particular session
 Requires message and sender (user, bot) in body & sessionId in params
-POST Endpoint: http://localhost:3000/chats/:sessionId
+POST Endpoint: https://dsa-chat-api.onrender.com/chats/:sessionId
 */
 router.post('/:sessionId', async (req, res) => {
     const chat = new Chat({
@@ -36,7 +36,7 @@ router.post('/:sessionId', async (req, res) => {
 /*
 Accept the body from AI code & add chat to particular session
 Requires userId, sessionId, topicName, userQue, aiAns
-POST Endpoint: http://localhost:3000/chats/session/:sessionId
+POST Endpoint:https://dsa-chat-api.onrender.com/chats/session/:sessionId
 */
 
 router.post('/session/:sessionId', async (req, res) => {

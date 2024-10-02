@@ -37,7 +37,7 @@ Verify the token
 */
 
 // API endpoint to verify JWT token
-//POST Endpoint: http://localhost:3000/auth/verify-token
+// POST Endpoint: https://dsa-chat-api.onrender.com/auth/verify-token
 router.post('/verify', (req, res) => {
     const token = req.body.token;
 

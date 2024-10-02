@@ -12,7 +12,14 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
+const corsOptions = {
+  origin: 'http://localhost:3000', // or '*' to allow any origin
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
 
+// Enable CORS with the above options
+app.use(cors(corsOptions));
 
 // mongoose.connect('mongodb://localhost:27017/chatbot', { useNewUrlParser: true, useUnifiedTopology: true });
 
