@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import passport from 'passport'; // Import passport explicitly
 import '../config/passport.js'; // Ensure the passport configuration is loaded
 import crypto from 'crypto';
+import User from '../models/User.js';
 
 const jwtSecret = crypto.randomBytes(64).toString('hex');
 console.log(jwtSecret);
@@ -45,7 +46,7 @@ router.post('/verify', (req, res) => {
         return res.status(401).json({ verified: false, error: 'No token provided' });
     }
 
-    jwt.verify(token, jwtSecret, (err, decoded) => {
+    jwt.verify(token, jwtSecret, async (err, decoded) => {
         if (err) {
             // Token verification failed
             return res.status(401).json({ verified: false, error: 'Failed to authenticate token' });
@@ -53,9 +54,10 @@ router.post('/verify', (req, res) => {
 
         // If token is verified, add decoded information to request for further use
         req.user = decoded;
+        const user = await User.findById(req.user.id);
                 
         // Send a response indicating the token is verified
-        res.json({ verified: true });
+        res.json({ verified: true, user:user });
     });
 });
 
