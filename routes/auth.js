@@ -18,14 +18,32 @@ router.get('/google', passport.authenticate('google', { scope: ['profile', 'emai
 
 router.get('/google/redirect', passport.authenticate('google', { failureRedirect: '/' }), (req, res) => {
     try {
-        const token = jwt.sign({ id: req.user.id }, jwtSecret, { expiresIn: '24h' });
         console.log('SUCCESS');
-        res.json({ token });
+        // Send the user data in the response
+        res.json({
+            user: {
+                id: req.user.id,
+                username: req.user.username,
+                email: req.user.email,
+                picture: req.user.picture
+            }
+        });
     } catch (error) {
-        console.error('Error generating JWT:', error);
+        console.error('Error sending user data:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
+// router.get('/google/redirect', passport.authenticate('google', { failureRedirect: '/' }), (req, res) => {
+//     try {
+//         // const token = jwt.sign({ id: req.user.id }, jwtSecret, { expiresIn: '24h' });
+//         console.log('SUCCESS');
+//         res.json({ token });
+//     } catch (error) {
+//         console.error('Error generating JWT:', error);
+//         res.status(500).json({ error: 'Internal Server Error' });
+//     }
+// });
 
 router.get('/logout', (req, res) => {
     req.logout();
