@@ -20,7 +20,7 @@ const corsOptions = {
 };
 
 // Enable CORS with the above options
-app.use(cors(corsOptions));
+app.use(cors());
 
 // mongoose.connect('mongodb://localhost:27017/chatbot', { useNewUrlParser: true, useUnifiedTopology: true });
 
